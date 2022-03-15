@@ -10,3 +10,6 @@ class Comment(models.Model):
  
     def __str__(self):
         return 'Comentario #{}'.format(self.id)
+
+class Test(models.Model):
+    text = models.TextField()
