@@ -7,6 +7,7 @@
         <title>Document</title>
     </head>
     <body>
+    
         <h1>Página para agregar</h1>
         <form action="{% url 'comments:add' %}" method="post">
             {% csrf_token %}
