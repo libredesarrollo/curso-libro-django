@@ -3,5 +3,8 @@ from . import views
 
 app_name='comments'
 urlpatterns = [
-    path('add', views.add, name='add')
+    path('add', views.add, name='add'),
+    path('update/<int:pk>', views.update, name='update'),
+    path('delete/<int:pk>', views.delete, name='delete'),
+    path('', views.index, name='index')
 ]
