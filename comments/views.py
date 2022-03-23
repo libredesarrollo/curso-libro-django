@@ -1,6 +1,7 @@
 
 from .models import Comment
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.core.paginator import Paginator
 
 from .forms import CommentForm
 
@@ -11,7 +12,7 @@ def add(request):
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save()
-            #return redirect('comment:index')
+            return redirect('comments:index')
     else:
         form = CommentForm()
 
@@ -20,26 +21,26 @@ def add(request):
 
 def index(request):
     comments = Comment.objects.all()
-    return render(request,'comments/index.html',{'comments':comments})
+    paginator = Paginator(comments,2)
 
-    #paginator = Paginator(comments,5)
+    page_number = request.GET.get('page')
+    comments_page = paginator.get_page(page_number)
+    return render(request,'comments/index.html',{'comments':comments_page})
 
-    #page_number = request.GET.get('page')
-    #comments_page = paginator.get_page(page_number)
+
 
     #return render(request,'index.html',{'comments':comments})
 
 def update(request, pk):
-
-    #comment = get_object_or_404(Comment, pk=pk)
-
-    comment = Comment.objects.get(pk=pk)
+    comment = get_object_or_404(Comment, pk=pk)
+    #comment = Comment.objects.get(pk=pk)
 
     if request.method == 'POST':
         form = CommentForm(request.POST, instance=comment)
 
         if form.is_valid():
             form.save()
+            return redirect('comments:index')
     else:
         form = CommentForm(instance=comment)
 
@@ -50,4 +51,4 @@ def delete(request, pk):
 
     if request.method == 'POST':
         comment.delete()
-            #return redirect('comment:update',pk=comment.id)
+    return redirect('comments:index')

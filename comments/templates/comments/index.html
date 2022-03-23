@@ -22,6 +22,41 @@
             </form>
         </div>
         {% endfor %}
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center mt-3">
+
+                {% if comments.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ comments.previous_page_number }}">prev</a>
+                </li>
+                {% endif %}
+
+                {% for i in comments.paginator.page_range %}
+
+                {% if i == comments.number %}
+                <li class="page-item active">
+                    <a class="page-link" href="#">{{ i }}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                </li>
+                {% endif %}
+
+
+
+                {% endfor %}
+
+                {% if comments.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ comments.next_page_number }}">next</a>
+                </li>
+                {% endif %}
+
+            </ul>
+        </nav>
+
     </div>
 </body>
 
