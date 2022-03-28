@@ -6,5 +6,6 @@ from .models import Comment
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id','text')
+    
 
 admin.site.register(Comment, CategoryAdmin)
