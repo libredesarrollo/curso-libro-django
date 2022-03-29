@@ -7,7 +7,7 @@ from .forms import CommentForm
 
 # Create your views here.
 def add(request):
-
+    
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -20,6 +20,7 @@ def add(request):
 
 
 def index(request):
+    print(Comment.objects.get(pk=1))
     comments = Comment.objects.all()
     paginator = Paginator(comments,2)
 
