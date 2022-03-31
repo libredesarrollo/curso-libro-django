@@ -3,11 +3,14 @@ from .models import Comment
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
 
-from .forms import CommentForm
+#from .forms import CommentForm
 
 # Create your views here.
+
+
 def add(request):
-    
+    pass
+"""    
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -52,4 +55,4 @@ def delete(request, pk):
 
     if request.method == 'POST':
         comment.delete()
-    return redirect('comments:index')
+    return redirect('comments:index')"""

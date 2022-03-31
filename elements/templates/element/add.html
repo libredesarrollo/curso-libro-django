@@ -1,0 +1,5 @@
+<form action="{% url 'elements:add' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Enviar">
+</form>
