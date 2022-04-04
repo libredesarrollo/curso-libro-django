@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado</title>
+</head>
+
+<body>
+    <div style="width: 200px">
+        {% for e in elements %}
+        <div style="margin-top: 10px; border: 1px solid;">
+            <p>{{ e.title }}</p>
+
+        </div>
+        {% endfor %}
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center mt-3">
+
+                {% if elements.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ elements.previous_page_number }}">prev</a>
+                </li>
+                {% endif %}
+
+                {% for i in elements.paginator.page_range %}
+
+                {% if i == elements.number %}
+                <li class="page-item active">
+                    <a class="page-link" href="#">{{ i }}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                </li>
+                {% endif %}
+
+
+
+                {% endfor %}
+
+                {% if elements.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ comments.next_page_number }}">next</a>
+                </li>
+                {% endif %}
+
+            </ul>
+        </nav>
+
+    </div>
+</body>
+
+</html>
