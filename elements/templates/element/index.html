@@ -9,12 +9,25 @@
 </head>
 
 <body>
-    <div style="width: 200px">
+   
         {% for e in elements %}
-        <div style="margin-top: 10px; border: 1px solid;">
-            <p>{{ e.title }}</p>
-
-        </div>
+        <table>
+            <tr>
+                <th>Título</th>
+                <th>Categoría</th>
+                <th>Tipo</th>
+                <th>Precio</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+            <tr>
+                <td>{{ e.title }}</td>
+                <td>{{ e.category.title }}</td>
+                <td>{{ e.type }}</td>
+                <td>{{ e.price }}</td>
+                <td>{{ e.created }}</td>
+            </tr>
+        </table>
         {% endfor %}
 
         <nav aria-label="Page navigation example">
@@ -50,8 +63,6 @@
 
             </ul>
         </nav>
-
-    </div>
 </body>
 
 </html>

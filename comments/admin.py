@@ -5,7 +5,7 @@ from .models import Comment
 # Register your models here.
 
 @admin.register(Comment)
-class CategoryAdmin(admin.ModelAdmin):
+class CommentAdmin(admin.ModelAdmin):
     list_display = ('id','text')
     search_fields = ('text', 'id')
     date_hierarchy = 'date_posted'
@@ -13,7 +13,8 @@ class CategoryAdmin(admin.ModelAdmin):
     list_filter = ('id', 'date_posted')
     list_editable = ('text',)
 
+
     #fields = ('text',)
-    exclude = ('text',)
+    #exclude = ('text',)
     
 #admin.site.register(Comment, CategoryAdmin)
