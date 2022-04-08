@@ -1,3 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
 {% if form.errors %}
     <br>
     {% for field in form  %}
@@ -10,6 +15,9 @@
 {% endif %}
 <form action="{% url 'elements:add' %}" method="post">
     {% csrf_token %}
-    {{ form }}
+    {{ form.title }}
     <input type="submit" value="Enviar">
 </form>
+
+
+{% endblock %}
