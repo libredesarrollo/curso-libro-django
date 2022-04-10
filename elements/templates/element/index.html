@@ -1,11 +1,6 @@
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-    <body>
+{% extends "base.html" %}
+{% block content %}
+    {% for e in elements %}
         <table>
             <tr>
                 <th>Título</th>
@@ -15,40 +10,15 @@
                 <th>Fecha</th>
                 <th>Acciones</th>
             </tr>
-            {% for e in elements %}
-                <tr>
-                    <td>{{ e.title }}</td>
-                    <td>{{ e.category.title }}</td>
-                    <td>{{ e.type }}</td>
-                    <td>{{ e.price }}</td>
-                    <td>{{ e.created }}</td>
-                </tr>
-            {% endfor %}
+            <tr>
+                <td>{{ e.title }}</td>
+                <td>{{ e.category.title }}</td>
+                <td>{{ e.type }}</td>
+                <td>{{ e.price }}</td>
+                <td>{{ e.created }}</td>
+            </tr>
         </table>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center mt-3">
-                {% if elements.has_previous %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ elements.previous_page_number }}">prev</a>
-                    </li>
-                {% endif %}
-                {% for i in elements.paginator.page_range %}
-                    {% if i == elements.number %}
-                        <li class="page-item active">
-                            <a class="page-link" href="#">{{ i }}</a>
-                        </li>
-                    {% else %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-                {% if elements.has_next %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ elements.next_page_number }}">next</a>
-                    </li>
-                {% endif %}
-            </ul>
-        </nav>
-    </body>
-</html>
+    {% endfor %}
+    {% include 'partials/pagination.html' with page_obj=elements %}
+{% endblock %}
+
