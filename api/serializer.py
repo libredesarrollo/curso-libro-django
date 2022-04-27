@@ -25,9 +25,9 @@ class TypeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ElementSerializer(serializers.ModelSerializer):
-    category = CategorySerializer(read_only=True)
-    type = TypeSerializer(read_only=True)
-    comments = CommentSerializer(many=True, read_only=True) #serializers.StringRelatedField(many=True)
+    category = CategorySerializer(read_only=False)
+    type = TypeSerializer(read_only=False)
+    comments = CommentSerializer(many=True, read_only=False) #serializers.StringRelatedField(many=True)
     class Meta:
         model = Element
         fields = '__all__'
